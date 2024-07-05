@@ -68,14 +68,63 @@ while verifica != 6{ // Loop "infinito"
             pacientes.append(paciente)
             }
         case 2: // Alterando dados do Paciente
-            print("Alterar dados do Paciente")
+            print("Digite o número de identificação do paciente que deseja alterar:")
+            let identificacao = readLine()!
+            
+            if let index = pacientes.firstIndex(where: { $0.identificacao == identificacao }) {
+                print("Paciente encontrado. Digite os novos dados:")
+                
+                print("Novo nome completo do paciente:")
+                pacientes[index].nomeCompleto = readLine()!
+                
+                print("Nova data de nascimento do paciente:")
+                pacientes[index].dataNascimento = readLine()!
+                
+                print("Novo diagnóstico médico do paciente:")
+                pacientes[index].diagnostico = readLine()!
+                
+                print("Novas medicações em uso pelo paciente:")
+                pacientes[index].medicacoesEmUso = readLine()!
+                
+                print("Nova data de admissão do paciente:")
+                pacientes[index].dataAdmissao = readLine()!
+                
+                print("Novas notas e observações dos médicos sobre o paciente:")
+                pacientes[index].notasObservacoes = readLine()!
+                
+                print("Dados do paciente alterados com sucesso!")
+            } else {
+                print("Paciente não encontrado.")
+            }
         
-        case 3: // Excluindo um Paciente
-            print("Excluir um Paciente")
+        case 3:
+            print("Digite o número de identificação do paciente que deseja excluir:")
+            let identificacao = readLine()!
+            
+            if let index = pacientes.firstIndex(where: { $0.identificacao == identificacao }) {
+                pacientes.remove(at: index)
+                print("Paciente removido do sistema.")
+            } else {
+                print("Paciente não encontrado.")
+            }
             
         case 4: // Visualizando Pacientes
-            print("Visualizar Pacientes")
-        
+            if pacientes.isEmpty {
+                print("Não há pacientes cadastrados.")
+            } else {
+                print("Lista de Pacientes:")
+                for paciente in pacientes {
+                    print("========================")
+                    print("Nome: \(paciente.nomeCompleto)")
+                    print("Data de Nascimento: \(paciente.dataNascimento)")
+                    print("Número de Identificação: \(paciente.identificacao)")
+                    print("Diagnóstico Médico: \(paciente.diagnostico)")
+                    print("Medicações em Uso: \(paciente.medicacoesEmUso)")
+                    print("Data de Admissão: \(paciente.dataAdmissao)")
+                    print("Notas e Observações: \(paciente.notasObservacoes)")
+                }
+                print("========================")
+            }
         case 5: // Pesquisando Paciente
             print("Pesquisar Paciente")
     
